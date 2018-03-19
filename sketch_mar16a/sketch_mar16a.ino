@@ -1,22 +1,40 @@
+#define MIN 10
+#define MAX 14
+
 void setup() {
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
+  randomSeed(analogRead(0));
+
+  pinMode(2, OUTPUT);
+  for(int i = MIN; i < MAX; i++) pinMode(i, OUTPUT);
+}
+
+void dim (int i) {
+  for(int p = 0; p <= 240; p += 16) {
+    analogWrite(i, p);
+    delay(25);
+  }
+  delay(200);
+
+  for(int p = 240; p >= 0; p -= 16) {
+    analogWrite(i, p);
+    delay(25);
+  }
+}
+
+void blink (int i) {
+  for(int n = 0; n < 5; n++) {
+    digitalWrite(i, HIGH);
+    delay(50);
+    digitalWrite(i, LOW);
+    delay(50);
+  }
 }
 
 void loop() {
-  for(int i = 10; i <= 13; i++) {
-    for(int p = 0; p <= 240; p += 16) {
-      analogWrite(i, p);
-      delay(25);
-    }
-
-    delay(200);
-
-    for(int p = 240; p >= 0; p -= 16) {
-      analogWrite(i, p);
-      delay(25);
-    }
-  }
+  dim(random(MIN, MAX));
+  blink(2);
+//  digitalWrite(2, LOW);
+//  delay(500);
+//  digitalWrite(2, HIGH);
+//  delay(50);
 }
