@@ -1,3 +1,6 @@
 [submodule "libraries/SimpleTimer"]
 	path = libraries/SimpleTimer
 	url = https://github.com/schinken/SimpleTimer
+[submodule "libraries/Bounce2"]
+	path = libraries/Bounce2
+	url = https://github.com/thomasfredericks/Bounce2.git
