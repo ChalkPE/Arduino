@@ -4,10 +4,10 @@ bool l = 0, r = 0;
 unsigned long mm = 0;
 
 void setup() {
-  pinMode(B, INPUT_PULLUP);
   pinMode(L, OUTPUT);
   pinMode(R, OUTPUT);
-  attachInterrupt(1, isr, RISING);
+  pinMode(B, INPUT_PULLUP);
+  attachInterrupt(1, isr, CHANGE);
 }
 
 void loop() {
@@ -15,8 +15,10 @@ void loop() {
   delay(500);
 }
 
+
 void isr() {
-  unsigned long m = millis();
-  digitalWrite(R, r = !r);
+  unsigned long m = micros();
+  if ((m - mm) < 25000) return; mm = m;
+  if (!digitalRead(B)) digitalWrite(R, r = !r);
 }
 
