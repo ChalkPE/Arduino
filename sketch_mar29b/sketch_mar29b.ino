@@ -1,4 +1,4 @@
-#include "pitches.h"
+#include <pitches.h>
 #define BUZZER 12
 
 void setup() {
